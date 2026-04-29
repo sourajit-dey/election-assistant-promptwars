@@ -4,6 +4,12 @@ var SYSTEM_PROMPT = 'You are VoteGuide, a friendly Indian election assistant. He
 
 /* ---------- Gemini API Call ---------- */
 function sendToGemini(userMessage, conversationHistory) {
+  // Check if API key is available
+  if (typeof GEMINI_API_KEY === 'undefined' || !GEMINI_API_KEY || GEMINI_API_KEY === 'YOUR_API_KEY_HERE') {
+    console.error('[VoteGuide] GEMINI_API_KEY is not configured.');
+    return Promise.resolve('API key is not configured. Please set your Gemini API key in js/config.js');
+  }
+
   var url = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=' + GEMINI_API_KEY;
 
   return fetch(url, {
@@ -14,17 +20,49 @@ function sendToGemini(userMessage, conversationHistory) {
       contents: conversationHistory
     })
   })
-  .then(function(res) { return res.json(); })
+  .then(function(res) {
+    if (!res.ok) {
+      console.error('[VoteGuide] API HTTP error:', res.status, res.statusText);
+      return res.json().then(function(errData) {
+        console.error('[VoteGuide] API error body:', JSON.stringify(errData));
+        if (res.status === 429) {
+          return { _error: 'I am receiving too many requests right now. Please wait a moment and try again.' };
+        }
+        if (res.status === 400) {
+          return { _error: 'There was a problem with the request. Please try rephrasing your question.' };
+        }
+        if (res.status === 403) {
+          return { _error: 'API key may be restricted. Please check your Gemini API key permissions.' };
+        }
+        return { _error: 'Something went wrong (error ' + res.status + '). Please try again.' };
+      }).catch(function() {
+        return { _error: 'Connection error (HTTP ' + res.status + '). Please try again or call Voter Helpline 1950.' };
+      });
+    }
+    return res.json();
+  })
   .then(function(data) {
+    // Check if we set an error in the previous step
+    if (data && data._error) {
+      return data._error;
+    }
+    console.log('[VoteGuide] API response:', JSON.stringify(data).substring(0, 200));
     if (data && data.candidates && data.candidates[0] &&
         data.candidates[0].content && data.candidates[0].content.parts &&
         data.candidates[0].content.parts[0]) {
       return data.candidates[0].content.parts[0].text;
     }
+    // API returned but no candidates — could be a safety filter or empty response
+    if (data && data.promptFeedback) {
+      console.warn('[VoteGuide] Prompt blocked:', JSON.stringify(data.promptFeedback));
+      return 'I could not process that question. Please try asking something else about Indian elections.';
+    }
+    console.warn('[VoteGuide] Unexpected response format:', JSON.stringify(data));
     return 'I am having trouble connecting. Please try again or call Voter Helpline 1950.';
   })
-  .catch(function() {
-    return 'I am having trouble connecting. Please try again or call Voter Helpline 1950.';
+  .catch(function(err) {
+    console.error('[VoteGuide] Fetch error:', err);
+    return 'I am having trouble connecting. Please check your internet and try again, or call Voter Helpline 1950.';
   });
 }
 
@@ -204,6 +242,11 @@ function buildChatbot() {
         conversationHistory = conversationHistory.slice(conversationHistory.length - 10);
       }
       addBotBubble(reply);
+      setInputEnabled(true);
+    }).catch(function(err) {
+      console.error('[VoteGuide] Unhandled error in handleSend:', err);
+      hideTyping();
+      addBotBubble('Something went wrong. Please try again or call Voter Helpline 1950.');
       setInputEnabled(true);
     });
   }
