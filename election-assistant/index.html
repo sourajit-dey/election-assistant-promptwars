@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="VoteGuide India - Interactive Indian Election Guide. Learn about Lok Sabha elections, voter registration, eligibility, and key election terms.">
+  <title>VoteGuide India — Interactive Indian Election Guide</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/animations.css">
+</head>
+<body>
+  <!-- Flag Stripe -->
+  <div class="flag-stripe"></div>
+
+  <!-- Navbar -->
+  <header class="navbar" id="navbar">
+    <div class="container">
+      <a href="#" class="navbar-brand">
+        <img src="assets/chakra.svg" alt="Ashoka Chakra" width="28" height="28">
+        Vote<span>Guide</span> India
+      </a>
+      <nav class="nav-links" id="nav-links">
+        <a href="#timeline">Timeline</a>
+        <a href="#eligibility">Eligibility</a>
+        <a href="#register">Register</a>
+        <a href="#glossary">Glossary</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section id="hero">
+    <div class="container">
+      <img src="assets/chakra.svg" alt="Ashoka Chakra" class="hero-chakra">
+      <h1 class="hero-title">Your Complete Guide to<br><span class="highlight">Indian Elections</span></h1>
+      <p class="hero-subtitle">Understand the Lok Sabha election process — from announcement to results — in an interactive, step-by-step format. Built for every Indian citizen.</p>
+      <div class="hero-cta-group">
+        <a href="#timeline" class="btn btn-primary">Explore the Timeline</a>
+        <a href="#eligibility" class="btn btn-secondary">Check Eligibility</a>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="hero-stat-value">543</div>
+          <div class="hero-stat-label">Lok Sabha Seats</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-value">272</div>
+          <div class="hero-stat-label">Majority Mark</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-value">970M+</div>
+          <div class="hero-stat-label">Registered Voters</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Timeline -->
+  <section id="timeline">
+    <div class="container">
+      <span class="section-label">The Process</span>
+      <h2 class="section-title">7 Stages of a Lok Sabha Election</h2>
+      <p class="section-desc">From the moment the Election Commission announces the schedule to the final counting day — follow every step of India's democratic process.</p>
+      <div id="timeline-content"></div>
+    </div>
+  </section>
+
+  <!-- Eligibility -->
+  <section id="eligibility">
+    <div class="container">
+      <span class="section-label">Am I Eligible?</span>
+      <h2 class="section-title">Voter Eligibility Checker</h2>
+      <p class="section-desc">Answer 4 quick questions to find out if you're eligible to vote in Indian elections.</p>
+      <div id="eligibility-content"></div>
+    </div>
+  </section>
+
+  <!-- Registration Guide -->
+  <section id="register">
+    <div class="container">
+      <span class="section-label">Get Registered</span>
+      <h2 class="section-title">Step-by-Step Registration Guide</h2>
+      <p class="section-desc">Whether you're a first-time voter, an NRI, or need to correct your details — follow the steps below.</p>
+      <div id="register-content"></div>
+    </div>
+  </section>
+
+  <!-- Glossary -->
+  <section id="glossary">
+    <div class="container">
+      <span class="section-label">Key Terms</span>
+      <h2 class="section-title">Election Glossary</h2>
+      <p class="section-desc">14 essential terms every voter should know — from EVM to VVPAT to NOTA.</p>
+      <div id="glossary-content"></div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="container">
+      <span class="section-label">Common Questions</span>
+      <h2 class="section-title">Frequently Asked Questions</h2>
+      <p class="section-desc">Answers to the most common questions Indian voters have about the election process.</p>
+      <div id="faq-content"></div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-brand">VoteGuide India 🗳️</div>
+      <p>An interactive guide to the Indian election process</p>
+      <div class="footer-links">
+        <a href="https://eci.gov.in" target="_blank">ECI Official</a>
+        <a href="https://voters.eci.gov.in" target="_blank">NVSP Portal</a>
+        <a href="https://electoralsearch.eci.gov.in" target="_blank">Voter Search</a>
+        <a href="tel:1950">📞 1950</a>
+      </div>
+      <div class="footer-disclaimer">
+        <strong>Disclaimer:</strong> This is an educational tool built for PromptWars Virtual 2026. Content is sourced from ECI, NVSP, and the Representation of the People Act, 1951. This is not an official government website. Always verify information at <a href="https://eci.gov.in">eci.gov.in</a>.
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to Top -->
+  <button class="back-to-top" id="back-to-top" aria-label="Back to top">↑</button>
+
+  <!-- Scripts (config first, then data, then features, then chatbot last) -->
+  <script src="js/config.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/timeline.js"></script>
+  <script src="js/eligibility.js"></script>
+  <script src="js/glossary.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/chatbot.js"></script>
+</body>
+</html>

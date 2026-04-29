@@ -1,0 +1,150 @@
+/* ============================================
+   VoteGuide India — Component Styles
+   ============================================ */
+
+/* ---------- Buttons ---------- */
+.btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-body);font-size:.9rem;font-weight:500;padding:12px 24px;border-radius:var(--radius-sm);border:none;cursor:pointer;transition:all var(--transition);line-height:1}
+.btn-primary{background:var(--primary);color:#fff;box-shadow:0 2px 8px rgba(255,153,51,.25)}
+.btn-primary:hover{background:var(--primary-dark);transform:translateY(-1px);box-shadow:0 4px 12px rgba(255,153,51,.35)}
+.btn-secondary{background:transparent;color:var(--primary);border:1.5px solid var(--primary)}
+.btn-secondary:hover{background:rgba(255,153,51,.06)}
+.btn-sm{font-size:.8rem;padding:8px 16px}
+.btn-icon{width:40px;height:40px;padding:0;justify-content:center;border-radius:50%}
+
+/* ---------- Cards ---------- */
+.card{background:var(--surface);border-radius:var(--radius);box-shadow:var(--shadow);padding:24px;transition:box-shadow var(--transition)}
+.card:hover{box-shadow:var(--shadow-lg)}
+
+/* ---------- Timeline ---------- */
+.timeline{position:relative;padding-left:48px}
+.timeline::before{content:'';position:absolute;left:19px;top:0;bottom:0;width:2px;background:var(--border)}
+.timeline-item{position:relative;margin-bottom:16px}
+.timeline-circle{position:absolute;left:-48px;top:0;width:40px;height:40px;border-radius:50%;background:var(--surface);border:2px solid var(--border);display:flex;align-items:center;justify-content:center;font-family:var(--font-heading);font-weight:700;font-size:.85rem;color:var(--text-secondary);transition:all .3s ease;z-index:1}
+.timeline-item.active .timeline-circle{border-color:var(--primary);color:var(--primary);background:rgba(255,153,51,.08);box-shadow:0 0 0 4px rgba(255,153,51,.12)}
+.timeline-header{display:flex;align-items:center;justify-content:space-between;cursor:pointer;padding:16px 20px;background:var(--surface);border-radius:var(--radius);box-shadow:var(--shadow);transition:all .3s ease;border-left:3px solid transparent;user-select:none}
+.timeline-item.active .timeline-header{border-left-color:var(--primary);box-shadow:var(--shadow-lg)}
+.timeline-header:hover{box-shadow:var(--shadow-lg)}
+.timeline-header-left{display:flex;align-items:center;gap:12px}
+.timeline-icon{font-size:1.5rem}
+.timeline-header-text h3{margin-bottom:2px}
+.timeline-header-text p{font-size:.85rem;color:var(--text-secondary);margin:0}
+.timeline-meta{display:flex;align-items:center;gap:8px}
+.timeline-chevron{font-size:1.1rem;color:var(--text-secondary);transition:transform .3s ease}
+.timeline-item.active .timeline-chevron{transform:rotate(180deg)}
+.timeline-content{max-height:0;overflow:hidden;transition:max-height .4s ease}
+.timeline-content-inner{padding:20px;margin-top:4px;background:var(--surface);border-radius:0 0 var(--radius) var(--radius);border-left:3px solid var(--primary)}
+.timeline-content-inner ul{display:flex;flex-direction:column;gap:8px}
+.timeline-content-inner li{padding-left:20px;position:relative;font-size:.95rem;color:var(--text-secondary);line-height:1.6}
+.timeline-content-inner li::before{content:'\2022';position:absolute;left:0;color:var(--primary);font-weight:700}
+.timeline-funfact{margin-top:16px;padding:12px 16px;background:rgba(255,153,51,.06);border-radius:var(--radius-sm);border-left:3px solid var(--primary)}
+.timeline-funfact-label{font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:var(--primary);margin-bottom:4px}
+.timeline-funfact p{font-size:.9rem;color:var(--text-primary);margin:0;font-style:italic}
+
+/* ---------- Eligibility Checker ---------- */
+.eligibility-card{background:var(--surface);border-radius:var(--radius);box-shadow:var(--shadow);padding:32px;max-width:540px;margin:0 auto}
+.eligibility-progress{display:flex;gap:6px;margin-bottom:24px}
+.eligibility-progress-dot{flex:1;height:4px;border-radius:2px;background:var(--border);transition:background .3s ease}
+.eligibility-progress-dot.filled{background:var(--primary)}
+.eligibility-progress-dot.current{background:var(--primary);animation:pulse 1.5s infinite}
+.eligibility-step{text-align:center}
+.eligibility-step-number{font-size:.8rem;color:var(--text-secondary);margin-bottom:8px}
+.eligibility-step h3{margin-bottom:16px}
+.eligibility-options{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:16px}
+.eligibility-option{padding:12px 28px;border-radius:var(--radius-sm);border:1.5px solid var(--border);background:var(--surface);cursor:pointer;font-family:var(--font-body);font-size:.95rem;font-weight:500;transition:all var(--transition)}
+.eligibility-option:hover{border-color:var(--primary);background:rgba(255,153,51,.04)}
+.eligibility-option.selected{border-color:var(--primary);background:rgba(255,153,51,.08);color:var(--primary)}
+.eligibility-input{width:100%;max-width:200px;margin:0 auto;display:block;padding:12px 16px;border:1.5px solid var(--border);border-radius:var(--radius-sm);font-family:var(--font-body);font-size:1.1rem;text-align:center;outline:none;transition:border-color var(--transition)}
+.eligibility-input:focus{border-color:var(--primary)}
+.eligibility-next{margin-top:20px}
+.result-card{padding:24px;border-radius:var(--radius);text-align:center;margin-top:16px}
+.result-card.eligible{background:rgba(19,136,8,.08);border:1.5px solid var(--secondary)}
+.result-card.not-yet{background:rgba(255,153,51,.08);border:1.5px solid var(--primary)}
+.result-card.check-needed{background:rgba(0,0,128,.06);border:1.5px solid var(--navy)}
+.result-card.ineligible{background:rgba(220,38,38,.06);border:1.5px solid #dc2626}
+.result-icon{font-size:2.5rem;margin-bottom:8px}
+.result-card h3{margin-bottom:8px}
+.result-card p{font-size:.9rem;color:var(--text-secondary);margin-bottom:16px}
+
+/* ---------- Registration Tabs ---------- */
+.reg-tab-bar{display:flex;gap:4px;background:var(--bg);border-radius:var(--radius-sm);padding:4px;margin-bottom:24px;overflow-x:auto}
+.reg-tab{flex:1;padding:10px 16px;text-align:center;font-size:.85rem;font-weight:500;border-radius:6px;cursor:pointer;transition:all var(--transition);white-space:nowrap;border:none;background:transparent;font-family:var(--font-body);color:var(--text-secondary)}
+.reg-tab.active{background:var(--surface);color:var(--primary);box-shadow:var(--shadow)}
+.reg-tab:hover:not(.active){color:var(--text-primary)}
+.reg-panel{display:none}
+.reg-panel.active{display:block}
+.reg-step{display:flex;gap:16px;padding:20px;background:var(--surface);border-radius:var(--radius);box-shadow:var(--shadow);margin-bottom:12px;align-items:flex-start}
+.reg-step-num{width:36px;height:36px;min-width:36px;border-radius:50%;background:rgba(255,153,51,.1);color:var(--primary);display:flex;align-items:center;justify-content:center;font-family:var(--font-heading);font-weight:700;font-size:.9rem}
+.reg-step-content h3{font-size:1rem;margin-bottom:4px}
+.reg-step-content p{font-size:.9rem;color:var(--text-secondary);margin-bottom:6px}
+.reg-step-tip{font-size:.8rem;color:var(--secondary);display:flex;align-items:baseline;gap:4px}
+.reg-step-tip::before{content:'\1F4A1';font-size:.75rem}
+
+/* ---------- Accordion (Glossary & FAQ) ---------- */
+.search-input-wrap{position:relative;margin-bottom:24px}
+.search-input{width:100%;padding:12px 16px 12px 44px;border:1.5px solid var(--border);border-radius:var(--radius-sm);font-family:var(--font-body);font-size:.95rem;outline:none;transition:border-color var(--transition);background:var(--surface)}
+.search-input:focus{border-color:var(--primary)}
+.search-icon{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--text-secondary);font-size:1rem}
+.accordion{display:flex;flex-direction:column;gap:8px}
+.accordion-item{background:var(--surface);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;transition:box-shadow var(--transition)}
+.accordion-item:hover{box-shadow:var(--shadow-lg)}
+.accordion-header{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;cursor:pointer;user-select:none;transition:background var(--transition)}
+.accordion-header:hover{background:rgba(0,0,0,.01)}
+.accordion-header h3{font-size:1rem;font-weight:500;flex:1}
+.accordion-chevron{font-size:1rem;color:var(--text-secondary);transition:transform .3s ease;flex-shrink:0;margin-left:12px}
+.accordion-item.open .accordion-chevron{transform:rotate(180deg)}
+.accordion-body{max-height:0;overflow:hidden;transition:max-height .4s ease}
+.accordion-body-inner{padding:0 20px 16px;font-size:.9rem;color:var(--text-secondary);line-height:1.7}
+.accordion-source{font-size:.8rem;color:var(--primary);margin-top:8px;font-style:italic}
+.glossary-grid{display:grid;grid-template-columns:1fr;gap:8px}
+.no-results{text-align:center;padding:32px;color:var(--text-secondary);font-size:.95rem}
+
+/* ---------- Responsive ---------- */
+@media(max-width:768px){.timeline{padding-left:40px}.timeline::before{left:15px}.timeline-circle{left:-40px;width:32px;height:32px;font-size:.75rem}.timeline-header{padding:14px 16px}.reg-step{flex-direction:column;gap:12px}}
+@media(max-width:480px){.eligibility-card{padding:20px}.eligibility-options{flex-direction:column}.eligibility-option{width:100%}}
+
+/* ---------- Chatbot ---------- */
+.chatbot-fab{position:fixed;bottom:24px;right:24px;width:56px;height:56px;border-radius:50%;background:var(--primary);color:#fff;border:none;cursor:pointer;font-size:24px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(255,153,51,.35);z-index:1000;transition:all .3s ease}
+.chatbot-fab:hover{transform:scale(1.08);box-shadow:0 6px 20px rgba(255,153,51,.45)}
+.chatbot-fab.active{background:var(--primary-dark)}
+
+.chatbot-window{position:fixed;bottom:90px;right:24px;width:360px;height:500px;background:var(--surface);border-radius:16px;box-shadow:0 8px 32px rgba(0,0,0,.15);z-index:1000;display:none;flex-direction:column;overflow:hidden}
+.chatbot-window.open{display:flex;animation:fadeInUp .3s ease}
+
+.chatbot-header{background:var(--primary);color:#fff;padding:16px;display:flex;align-items:center;justify-content:space-between;border-radius:16px 16px 0 0;flex-shrink:0}
+.chatbot-header-title{font-family:var(--font-heading);font-weight:700;font-size:1rem}
+.chatbot-header-sub{font-size:.7rem;opacity:.85;margin-top:1px}
+.chatbot-close{background:none;border:none;color:#fff;font-size:22px;cursor:pointer;padding:0 4px;line-height:1;opacity:.85;transition:opacity .2s}
+.chatbot-close:hover{opacity:1}
+
+.chatbot-messages{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:4px}
+
+.chatbot-msg-row{display:flex;width:100%}
+.chatbot-msg-user{justify-content:flex-end}
+.chatbot-msg-bot{justify-content:flex-start}
+
+.chatbot-bubble{padding:10px 14px;max-width:80%;font-size:.875rem;line-height:1.55;word-wrap:break-word}
+.chatbot-bubble-user{background:var(--primary);color:#fff;border-radius:16px 16px 4px 16px}
+.chatbot-bubble-bot{background:#F3F4F6;color:var(--text-primary);border-radius:16px 16px 16px 4px}
+
+.chatbot-input-area{border-top:1px solid var(--border);padding:12px;display:flex;gap:8px;flex-shrink:0;background:var(--surface)}
+.chatbot-input{flex:1;border:1px solid var(--border);border-radius:20px;padding:8px 16px;font-family:var(--font-body);font-size:.875rem;outline:none;transition:border-color .2s}
+.chatbot-input:focus{border-color:var(--primary)}
+.chatbot-input:disabled{opacity:.5;cursor:not-allowed}
+.chatbot-send{background:var(--primary);color:#fff;border:none;border-radius:20px;padding:8px 16px;font-family:var(--font-body);font-size:.875rem;font-weight:500;cursor:pointer;transition:background .2s;white-space:nowrap}
+.chatbot-send:hover{background:var(--primary-dark)}
+.chatbot-send:disabled{opacity:.5;cursor:not-allowed}
+
+/* Typing indicator */
+.chatbot-typing{display:flex;gap:5px;align-items:center;padding:12px 16px}
+.chatbot-typing .dot{width:8px;height:8px;border-radius:50%;background:#9CA3AF;animation:chatDotBounce .6s infinite ease-in-out}
+.chatbot-typing .dot:nth-child(2){animation-delay:.2s}
+.chatbot-typing .dot:nth-child(3){animation-delay:.4s}
+@keyframes chatDotBounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+
+/* Suggestion chips */
+.chatbot-chips{display:flex;flex-wrap:wrap;gap:6px;padding:4px 0 8px}
+.chatbot-chip{border:1px solid var(--primary);color:var(--primary);background:transparent;border-radius:20px;padding:6px 12px;font-family:var(--font-body);font-size:12px;cursor:pointer;transition:all .2s;white-space:nowrap}
+.chatbot-chip:hover{background:rgba(255,153,51,.08)}
+
+/* Chatbot responsive */
+@media(max-width:480px){.chatbot-window{right:8px;left:8px;bottom:80px;width:auto;height:calc(100vh - 160px);max-height:500px}.chatbot-fab{bottom:16px;right:16px;width:50px;height:50px;font-size:20px}}
