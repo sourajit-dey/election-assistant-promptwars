@@ -40,13 +40,11 @@ YOUR KNOWLEDGE:
 - Voter Helpline: 1950 (toll free)`;
 
 /* =========================================
-   Gemini API Configuration
+   API Configuration
    ========================================= */
 
-// Google Gemini 2.5 Flash API
-// Documentation: ai.google.dev/gemini-api/docs
-// Model: gemini-2.5-flash (optimized for speed and efficiency)
-const GEMINI_API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${typeof GEMINI_API_KEY !== 'undefined' ? GEMINI_API_KEY : ''}`;
+// The chatbot now uses a secure backend proxy to hide the API key
+const GEMINI_API_URL = '/api/chat';
 
 /* Rate limiting: minimum 2 seconds between API requests */
 let lastRequestTime = 0;
@@ -65,13 +63,8 @@ const MAX_INPUT_LENGTH = 500;
  * @returns {Promise<string>} The AI response text or an error message
  */
 function sendToGemini(userMessage, conversationHistory) {
-  /* Validate API key is configured */
-  if (typeof GEMINI_API_KEY === 'undefined' || !GEMINI_API_KEY || GEMINI_API_KEY === 'YOUR_API_KEY_HERE') {
-    return Promise.resolve('Please configure your Gemini API key to use the AI assistant. Visit aistudio.google.com to get one.');
-  }
-
-  /* Construct the API URL with current key */
-  const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_API_KEY}`;
+  /* Call our secure backend instead of Google directly */
+  const url = '/api/chat';
 
   return fetch(url, {
     method: 'POST',
