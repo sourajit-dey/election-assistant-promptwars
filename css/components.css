@@ -6,7 +6,7 @@
    BUTTONS
 ===================== */
 .btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-body);font-size:.9rem;font-weight:500;padding:12px 24px;border-radius:var(--radius-sm);border:none;cursor:pointer;transition:all var(--transition);line-height:1}
-.btn-primary{background:var(--primary);color:#fff;box-shadow:0 2px 8px rgba(255,153,51,.25)}
+.btn-primary{background:var(--primary);color:#1A1A2E;box-shadow:0 2px 8px rgba(255,153,51,.25)}
 .btn-primary:hover{background:var(--primary-dark);transform:translateY(-1px);box-shadow:0 4px 12px rgba(255,153,51,.35)}
 .btn-secondary{background:transparent;color:var(--primary);border:1.5px solid var(--primary)}
 .btn-secondary:hover{background:rgba(255,153,51,.06)}
@@ -153,7 +153,7 @@
 /* =====================
    CHATBOT
 ===================== */
-.chatbot-fab{position:fixed;bottom:24px;right:24px;width:56px;height:56px;border-radius:50%;background:var(--primary);color:#fff;border:none;cursor:pointer;font-size:24px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(255,153,51,.35);z-index:1000;transition:all .3s ease}
+.chatbot-fab{position:fixed;bottom:24px;right:24px;width:56px;height:56px;border-radius:50%;background:var(--primary);color:#1A1A2E;border:none;cursor:pointer;font-size:24px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(255,153,51,.35);z-index:1000;transition:all .3s ease}
 .chatbot-fab:hover{transform:scale(1.08);box-shadow:0 6px 20px rgba(255,153,51,.45)}
 .chatbot-fab.active{background:var(--primary-dark)}
 
@@ -180,7 +180,7 @@
 .chatbot-input{flex:1;border:1px solid var(--border);border-radius:20px;padding:8px 16px;font-family:var(--font-body);font-size:.875rem;outline:none;transition:border-color .2s}
 .chatbot-input:focus{border-color:var(--primary)}
 .chatbot-input:disabled{opacity:.5;cursor:not-allowed}
-.chatbot-send{background:var(--primary);color:#fff;border:none;border-radius:20px;padding:8px 16px;font-family:var(--font-body);font-size:.875rem;font-weight:500;cursor:pointer;transition:background .2s;white-space:nowrap}
+.chatbot-send{background:var(--primary);color:#1A1A2E;border:none;border-radius:20px;padding:8px 16px;font-family:var(--font-body);font-size:.875rem;font-weight:500;cursor:pointer;transition:background .2s;white-space:nowrap}
 .chatbot-send:hover{background:var(--primary-dark)}
 .chatbot-send:disabled{opacity:.5;cursor:not-allowed}
 
