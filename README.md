@@ -41,16 +41,18 @@ An interactive web application to help Indian citizens understand the complete L
 ## File Structure
 
 ```
-election-assistant/
+.
 ├── index.html            # Main HTML with semantic structure & CSP
 ├── README.md
 ├── .gitignore
+├── package.json          # Node dependencies (ESLint, etc.)
+├── eslint.config.js      # ESLint Flat Config for code quality
 ├── css/
 │   ├── style.css         # Design tokens, layout, accessibility
 │   ├── components.css    # Component styles (cards, timeline, chatbot)
 │   └── animations.css    # Keyframes, scroll animations, will-change
 ├── js/
-│   ├── config.js         # API key configuration (gitignored)
+│   ├── config.js         # API key configuration (production)
 │   ├── utils.js          # Shared utilities (debounce, sanitize, scroll)
 │   ├── data.js           # Frozen election data (Object.freeze)
 │   ├── timeline.js       # Timeline builder with ARIA & keyboard nav
