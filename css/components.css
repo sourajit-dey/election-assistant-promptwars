@@ -2,7 +2,9 @@
    VoteGuide India — Component Styles
    ============================================ */
 
-/* ---------- Buttons ---------- */
+/* =====================
+   BUTTONS
+===================== */
 .btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-body);font-size:.9rem;font-weight:500;padding:12px 24px;border-radius:var(--radius-sm);border:none;cursor:pointer;transition:all var(--transition);line-height:1}
 .btn-primary{background:var(--primary);color:#fff;box-shadow:0 2px 8px rgba(255,153,51,.25)}
 .btn-primary:hover{background:var(--primary-dark);transform:translateY(-1px);box-shadow:0 4px 12px rgba(255,153,51,.35)}
@@ -11,11 +13,15 @@
 .btn-sm{font-size:.8rem;padding:8px 16px}
 .btn-icon{width:40px;height:40px;padding:0;justify-content:center;border-radius:50%}
 
-/* ---------- Cards ---------- */
+/* =====================
+   CARDS
+===================== */
 .card{background:var(--surface);border-radius:var(--radius);box-shadow:var(--shadow);padding:24px;transition:box-shadow var(--transition)}
 .card:hover{box-shadow:var(--shadow-lg)}
 
-/* ---------- Timeline ---------- */
+/* =====================
+   TIMELINE
+===================== */
 .timeline{position:relative;padding-left:48px}
 .timeline::before{content:'';position:absolute;left:19px;top:0;bottom:0;width:2px;background:var(--border)}
 .timeline-item{position:relative;margin-bottom:16px}
@@ -32,6 +38,7 @@
 .timeline-chevron{font-size:1.1rem;color:var(--text-secondary);transition:transform .3s ease}
 .timeline-item.active .timeline-chevron{transform:rotate(180deg)}
 .timeline-content{max-height:0;overflow:hidden;transition:max-height .4s ease}
+.timeline-item.active .timeline-content{max-height:2000px}
 .timeline-content-inner{padding:20px;margin-top:4px;background:var(--surface);border-radius:0 0 var(--radius) var(--radius);border-left:3px solid var(--primary)}
 .timeline-content-inner ul{display:flex;flex-direction:column;gap:8px}
 .timeline-content-inner li{padding-left:20px;position:relative;font-size:.95rem;color:var(--text-secondary);line-height:1.6}
@@ -40,7 +47,9 @@
 .timeline-funfact-label{font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:var(--primary);margin-bottom:4px}
 .timeline-funfact p{font-size:.9rem;color:var(--text-primary);margin:0;font-style:italic}
 
-/* ---------- Eligibility Checker ---------- */
+/* =====================
+   ELIGIBILITY CHECKER
+===================== */
 .eligibility-card{background:var(--surface);border-radius:var(--radius);box-shadow:var(--shadow);padding:32px;max-width:540px;margin:0 auto}
 .eligibility-progress{display:flex;gap:6px;margin-bottom:24px}
 .eligibility-progress-dot{flex:1;height:4px;border-radius:2px;background:var(--border);transition:background .3s ease}
@@ -55,6 +64,7 @@
 .eligibility-option.selected{border-color:var(--primary);background:rgba(255,153,51,.08);color:var(--primary)}
 .eligibility-input{width:100%;max-width:200px;margin:0 auto;display:block;padding:12px 16px;border:1.5px solid var(--border);border-radius:var(--radius-sm);font-family:var(--font-body);font-size:1.1rem;text-align:center;outline:none;transition:border-color var(--transition)}
 .eligibility-input:focus{border-color:var(--primary)}
+.eligibility-error{color:#dc2626;font-size:.85rem;margin-top:4px;display:none;font-weight:500}
 .eligibility-next{margin-top:20px}
 .result-card{padding:24px;border-radius:var(--radius);text-align:center;margin-top:16px}
 .result-card.eligible{background:rgba(19,136,8,.08);border:1.5px solid var(--secondary)}
@@ -65,7 +75,9 @@
 .result-card h3{margin-bottom:8px}
 .result-card p{font-size:.9rem;color:var(--text-secondary);margin-bottom:16px}
 
-/* ---------- Registration Tabs ---------- */
+/* =====================
+   REGISTRATION TABS
+===================== */
 .reg-tab-bar{display:flex;gap:4px;background:var(--bg);border-radius:var(--radius-sm);padding:4px;margin-bottom:24px;overflow-x:auto}
 .reg-tab{flex:1;padding:10px 16px;text-align:center;font-size:.85rem;font-weight:500;border-radius:6px;cursor:pointer;transition:all var(--transition);white-space:nowrap;border:none;background:transparent;font-family:var(--font-body);color:var(--text-secondary)}
 .reg-tab.active{background:var(--surface);color:var(--primary);box-shadow:var(--shadow)}
@@ -79,7 +91,9 @@
 .reg-step-tip{font-size:.8rem;color:var(--secondary);display:flex;align-items:baseline;gap:4px}
 .reg-step-tip::before{content:'\1F4A1';font-size:.75rem}
 
-/* ---------- Accordion (Glossary & FAQ) ---------- */
+/* =====================
+   ACCORDION (GLOSSARY & FAQ)
+===================== */
 .search-input-wrap{position:relative;margin-bottom:24px}
 .search-input{width:100%;padding:12px 16px 12px 44px;border:1.5px solid var(--border);border-radius:var(--radius-sm);font-family:var(--font-body);font-size:.95rem;outline:none;transition:border-color var(--transition);background:var(--surface)}
 .search-input:focus{border-color:var(--primary)}
@@ -93,12 +107,15 @@
 .accordion-chevron{font-size:1rem;color:var(--text-secondary);transition:transform .3s ease;flex-shrink:0;margin-left:12px}
 .accordion-item.open .accordion-chevron{transform:rotate(180deg)}
 .accordion-body{max-height:0;overflow:hidden;transition:max-height .4s ease}
+.accordion-item.open .accordion-body{max-height:2000px}
 .accordion-body-inner{padding:0 20px 16px;font-size:.9rem;color:var(--text-secondary);line-height:1.7}
 .accordion-source{font-size:.8rem;color:var(--primary);margin-top:8px;font-style:italic}
 .glossary-grid{display:grid;grid-template-columns:1fr;gap:8px}
 .no-results{text-align:center;padding:32px;color:var(--text-secondary);font-size:.95rem}
 
-/* ---------- Responsive ---------- */
+/* =====================
+   RESPONSIVE BREAKPOINTS
+===================== */
 @media(max-width:768px){
   .timeline{padding-left:40px}
   .timeline::before{left:15px}
@@ -133,7 +150,9 @@
   .accordion-body-inner{padding:0 14px 14px;font-size:.82rem}
 }
 
-/* ---------- Chatbot ---------- */
+/* =====================
+   CHATBOT
+===================== */
 .chatbot-fab{position:fixed;bottom:24px;right:24px;width:56px;height:56px;border-radius:50%;background:var(--primary);color:#fff;border:none;cursor:pointer;font-size:24px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(255,153,51,.35);z-index:1000;transition:all .3s ease}
 .chatbot-fab:hover{transform:scale(1.08);box-shadow:0 6px 20px rgba(255,153,51,.45)}
 .chatbot-fab.active{background:var(--primary-dark)}

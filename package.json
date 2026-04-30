@@ -1,0 +1,25 @@
+{
+  "name": "pw-election-assistant",
+  "version": "1.0.0",
+  "description": "An interactive web application to help Indian citizens understand the complete Lok Sabha election process.",
+  "main": "eslint.config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sourajit-dey/election-assistant-promptwars.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sourajit-dey/election-assistant-promptwars/issues"
+  },
+  "homepage": "https://github.com/sourajit-dey/election-assistant-promptwars#readme",
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.2.1",
+    "globals": "^17.5.0"
+  }
+}

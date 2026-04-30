@@ -1,23 +1,38 @@
 /* ============================================
-   VoteGuide India — Animations
+   VoteGuide India — Animations & Transitions
    ============================================ */
 
+/* =====================
+   KEYFRAME DEFINITIONS
+===================== */
 @keyframes fadeInUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
 @keyframes spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
 @keyframes slideDown{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
 @keyframes scaleIn{from{opacity:0;transform:scale(.9)}to{opacity:1;transform:scale(1)}}
 
-.animate-on-scroll{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
+/* =====================
+   SCROLL REVEAL ANIMATIONS
+===================== */
+.animate-on-scroll{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease;will-change:transform}
 .animate-on-scroll.visible{opacity:1;transform:translateY(0)}
 .animate-on-scroll:nth-child(2){transition-delay:.1s}
 .animate-on-scroll:nth-child(3){transition-delay:.2s}
 .animate-on-scroll:nth-child(4){transition-delay:.3s}
 
+/* =====================
+   UTILITY TRANSITION CLASSES
+===================== */
 .transition-all{transition:all var(--transition)}
 .transition-colors{transition:color var(--transition),background-color var(--transition)}
 
-.fade-in{animation:fadeInUp .5s ease forwards}
-.scale-in{animation:scaleIn .4s ease forwards}
+/* =====================
+   NAMED ANIMATION CLASSES
+===================== */
+.fade-in{animation:fadeInUp .5s ease forwards;will-change:transform,opacity}
+.scale-in{animation:scaleIn .4s ease forwards;will-change:transform,opacity}
 
+/* =====================
+   REDUCED MOTION PREFERENCE
+===================== */
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important;scroll-behavior:auto !important}.animate-on-scroll{opacity:1;transform:none}}
