@@ -6,4 +6,4 @@
  */
 
 // Get your key from aistudio.google.com
-const GEMINI_API_KEY = 'YOUR_API_KEY_HERE';
+const GEMINI_API_KEY = 'AIzaSyAgePt800pOEjw7bBMrhcT2n3sXJRoTYzs';
