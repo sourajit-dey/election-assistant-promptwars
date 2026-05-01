@@ -16,12 +16,23 @@ An interactive web application to help Indian citizens understand the complete L
 
 ## Google Services Used
 
-| Service | Purpose |
-|---|---|
-| Google Gemini 2.0 Flash API | Powers the VoteGuide AI chatbot for real-time election Q&A |
-| Google AI Studio | API key management and model configuration |
-| Google Fonts (Inter, Poppins) | Premium typography across the application |
-| Google Antigravity | Agentic development environment used to build the project |
+| Service | Purpose | Implementation |
+|---|---|---|
+| Google Cloud App Engine | Production deployment and hosting | app.yaml + gcloud CLI |
+| Google Gemini 2.0 Flash API | Powers the VoteGuide AI chatbot | js/chatbot.js |
+| Google Analytics 4 | Anonymous feature engagement tracking | js/analytics.js |
+| Google Charts | Election data visualization (seats + turnout) | js/charts.js |
+| Google Maps Embed | Polling booth finder and ECI location | #booth-finder iframe |
+| Google AI Studio | Gemini API key management | aistudio.google.com |
+| Google Fonts (Inter, Poppins) | Premium typography via Google CDN | fonts.googleapis.com |
+| Google Antigravity | Agentic development environment | antigravity.google |
+
+## Deployment
+Deployed on Google Cloud App Engine.
+Live URL: [your-deployed-url-here]
+
+Deploy command:
+gcloud app deploy --project=YOUR_PROJECT_ID
 
 ## Built With
 

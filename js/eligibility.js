@@ -130,6 +130,7 @@ function buildEligibilityChecker() {
    * @returns {string} HTML string for the result card
    */
   function showResult() {
+    trackEligibilityCompletion('checker_completed');
     let r = '';
 
     /* Non-citizen — not eligible */

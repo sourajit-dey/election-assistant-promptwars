@@ -24,6 +24,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
   /* Initialize AI Chatbot */
   buildChatbot();
+
+  /* Initialize Google Charts */
+  initGoogleCharts();
 });
 
 /* =========================================
@@ -83,6 +86,7 @@ function buildRegistrationTabs() {
    * @returns {void}
    */
   function handleTabClick() {
+    trackRegistrationTab(this.getAttribute('data-tab') || 'unknown');
     const key = this.getAttribute('data-tab');
     const allTabs = wrap.querySelectorAll('.reg-tab');
     const allPanels = wrap.querySelectorAll('.reg-panel');
@@ -260,8 +264,9 @@ function initMobileMenu() {
    * @returns {void}
    */
   function handleHamburgerClick() {
-    hamburger.classList.toggle('open');
+    const isOpen = hamburger.classList.toggle('open');
     navLinks.classList.toggle('open');
+    hamburger.setAttribute('aria-expanded', isOpen.toString());
   }
 
   hamburger.addEventListener('click', handleHamburgerClick);

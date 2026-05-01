@@ -7,11 +7,27 @@
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta http-equiv="Content-Security-Policy"
     content="default-src 'self';
-             script-src 'self';
+             script-src 'self' https://www.googletagmanager.com https://www.gstatic.com;
              style-src 'self' https://fonts.googleapis.com;
              font-src https://fonts.gstatic.com;
-             connect-src 'self' https://generativelanguage.googleapis.com;
-             img-src 'self' data:;">
+             connect-src 'self' https://generativelanguage.googleapis.com https://www.google-analytics.com https://region1.google-analytics.com;
+             img-src 'self' data: https://www.google-analytics.com https://maps.googleapis.com;
+             frame-src https://www.google.com/maps/;">
+
+  <!-- Google Analytics 4 — Google Service Integration -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PLACEHOLDER"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-PLACEHOLDER', {
+      page_title: 'VoteGuide India — Interactive Indian Election Guide',
+      anonymize_ip: true
+    });
+  </script>
+
+  <!-- Google Charts — Data Visualization Service -->
+  <script async src="https://www.gstatic.com/charts/loader.js"></script>
   <title>VoteGuide India — Interactive Indian Election Guide</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -40,6 +56,8 @@
         <a href="#register">Register</a>
         <a href="#glossary">Glossary</a>
         <a href="#faq">FAQ</a>
+        <a href="#insights">Data</a>
+        <a href="#booth-finder">Find Booth</a>
       </nav>
       <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu" aria-expanded="false">
         <span></span><span></span><span></span>
@@ -125,6 +143,64 @@
         <div id="faq-content"></div>
       </div>
     </section>
+
+    <!-- Election Data Insights — Google Charts Section -->
+    <section id="insights">
+      <div class="container">
+        <span class="section-label">Data & Insights</span>
+        <h2 class="section-title">Election Data Visualized</h2>
+        <p class="section-desc">Real data from the 2024 Lok Sabha General Election — 
+        visualized using Google Charts.</p>
+        <div class="charts-grid">
+          <div class="chart-card">
+            <div id="chart-seats" 
+                 style="width:100%;height:300px;" 
+                 role="img" 
+                 aria-label="Pie chart showing 2024 Lok Sabha seat distribution: NDA 293 seats, INDIA Alliance 234 seats, Others 16 seats">
+            </div>
+          </div>
+          <div class="chart-card">
+            <div id="chart-turnout" 
+                 style="width:100%;height:300px;" 
+                 role="img" 
+                 aria-label="Bar chart showing voter turnout percentage across all 7 phases of the 2024 General Election">
+            </div>
+          </div>
+        </div>
+        <p class="chart-source">Source: Election Commission of India — eci.gov.in</p>
+      </div>
+    </section>
+
+    <!-- Polling Booth Finder — Google Maps Section -->
+    <section id="booth-finder">
+      <div class="container">
+        <span class="section-label">Find Your Booth</span>
+        <h2 class="section-title">Locate Your Polling Booth</h2>
+        <p class="section-desc">Use the official ECI voter portal to find the 
+        polling booth assigned to your voter ID. The map below shows the 
+        Election Commission of India headquarters in New Delhi.</p>
+        <div class="map-wrapper">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3501.9!2d77.2090!3d28.6315!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cfd37b741d057%3A0xcdee88e47393c3f4!2sElection%20Commission%20of%20India!5e0!3m2!1sen!2sin!4v1"
+            width="100%"
+            height="350"
+            style="border:0;border-radius:12px;"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="strict-origin-when-cross-origin"
+            title="Google Maps showing Election Commission of India headquarters, New Delhi"
+            aria-label="Interactive map showing the Election Commission of India headquarters location in New Delhi">
+          </iframe>
+        </div>
+        <p style="margin-top:16px;font-size:.9rem;color:var(--text-secondary)">
+          To find your personal polling booth: Visit 
+          <a href="https://electoralsearch.eci.gov.in" 
+             target="_blank" 
+             rel="noopener noreferrer">electoralsearch.eci.gov.in</a> 
+          or call Voter Helpline <strong>1950</strong>.
+        </p>
+      </div>
+    </section>
   </main>
 
   <!-- Footer -->
@@ -153,9 +229,11 @@
   <!-- Back to Top -->
   <button class="back-to-top" id="back-to-top" aria-label="Back to top">↑</button>
 
-  <!-- Scripts: config → utils → data → features → chatbot → tests -->
+  <!-- Scripts: config → utils → analytics → charts → data → features → chatbot → tests -->
   <script src="js/config.js"></script>
   <script src="js/utils.js"></script>
+  <script src="js/analytics.js"></script>
+  <script src="js/charts.js"></script>
   <script src="js/data.js"></script>
   <script src="js/timeline.js"></script>
   <script src="js/eligibility.js"></script>

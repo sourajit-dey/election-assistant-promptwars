@@ -1,0 +1,22 @@
+# app.yaml
+# Google Cloud App Engine configuration
+# VoteGuide India — Google PromptWars Virtual 2026
+
+runtime: nodejs20
+
+handlers:
+  - url: /css
+    static_dir: css
+
+  - url: /js
+    static_dir: js
+
+  - url: /assets
+    static_dir: assets
+
+  - url: /.*
+    static_files: index.html
+    upload: index.html
+
+env_variables:
+  NODE_ENV: "production"

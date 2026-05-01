@@ -31,6 +31,7 @@ function buildGlossary() {
   /* Attach debounced search handler to filter glossary terms */
   const searchInput = document.getElementById('glossary-search');
   searchInput.addEventListener('input', debounce(function () {
+    trackGlossarySearch(searchInput.value.trim().length > 0);
     const q = searchInput.value.toLowerCase().trim();
     const filtered = terms.filter(function (t) {
       return t.term.toLowerCase().indexOf(q) !== -1 || t.definition.toLowerCase().indexOf(q) !== -1;
@@ -142,7 +143,6 @@ function handleAccordionKeydown(e) {
  */
 function toggleAccordion(header) {
   const item = header.parentElement;
-  const body = item.querySelector('.accordion-body');
   const isOpen = item.classList.contains('open');
 
   /* Close all sibling accordion items */

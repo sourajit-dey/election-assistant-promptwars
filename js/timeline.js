@@ -97,6 +97,9 @@ function toggleTimeline(header) {
   /* Open the clicked item if it was previously closed */
   if (!isActive) {
     item.classList.add('active');
+    const titleEl = item.querySelector('h3');
+    if (titleEl) { trackTimelineStageView(titleEl.textContent.trim(), 
+      parseInt(item.getAttribute('data-stage') || '0', 10)); }
     header.setAttribute('aria-expanded', 'true');
   }
 }
