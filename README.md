@@ -18,7 +18,7 @@ An interactive web application to help Indian citizens understand the complete L
 
 | Service | Purpose | Implementation |
 |---|---|---|
-| Google Cloud App Engine | Production deployment and hosting | app.yaml + gcloud CLI |
+| Google Cloud Run | Production deployment and hosting | Dockerfile + Nginx |
 | Google Gemini 2.0 Flash API | Powers the VoteGuide AI chatbot | js/chatbot.js |
 | Google Analytics 4 | Anonymous feature engagement tracking | js/analytics.js |
 | Google Charts | Election data visualization (seats + turnout) | js/charts.js |
@@ -28,11 +28,11 @@ An interactive web application to help Indian citizens understand the complete L
 | Google Antigravity | Agentic development environment | antigravity.google |
 
 ## Deployment
-Deployed on Google Cloud App Engine.
-Live URL: [your-deployed-url-here]
+Deployed on Google Cloud Run.
+Live URL: [https://election-assistant-113871253572.us-central1.run.app/](https://election-assistant-113871253572.us-central1.run.app/)
 
 Deploy command:
-gcloud app deploy --project=YOUR_PROJECT_ID
+gcloud run deploy election-assistant --source . --region us-central1 --allow-unauthenticated
 
 ## Built With
 
