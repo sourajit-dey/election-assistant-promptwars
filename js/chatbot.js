@@ -52,7 +52,7 @@ const GEMINI_API_URL = `https://generativelanguage.googleapis.com/v1beta/models/
  * API key stays on server — never reaches browser.
  * @type {string}
  */
-const CLOUD_FUNCTION_URL = 'REPLACE_WITH_CLOUD_FUNCTION_URL';
+const CLOUD_FUNCTION_URL = 'https://us-central1-election-guide-promptwar.cloudfunctions.net/voteGuideChat';
 
 /* Rate limiting: minimum 2 seconds between API requests */
 let lastRequestTime = 0;
