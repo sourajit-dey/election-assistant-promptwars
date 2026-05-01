@@ -27,6 +27,18 @@ document.addEventListener('DOMContentLoaded', function () {
 
   /* Initialize Google Charts */
   initGoogleCharts();
+
+  /* Initialize Firebase anonymous analytics */
+  const fbReady = initFirebase();
+  if (fbReady) {
+    trackVisit();
+    getVisitCount().then(function(count) {
+      const el = document.getElementById('visitor-count');
+      if (el && count > 0) {
+        el.textContent = count.toLocaleString('en-IN');
+      }
+    });
+  }
 });
 
 /* =========================================

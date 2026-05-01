@@ -217,3 +217,13 @@
 @media(max-width:768px){
   .charts-grid{grid-template-columns:1fr}
 }
+
+/* =====================
+   LIVE VISITOR COUNTER
+===================== */
+.live-counter{display:flex;align-items:center;gap:8px;
+  justify-content:center;margin-top:20px;font-size:.85rem;
+  color:var(--text-secondary)}
+.live-dot{width:8px;height:8px;border-radius:50%;
+  background:var(--secondary);animation:pulse 2s infinite;
+  will-change:opacity;flex-shrink:0}

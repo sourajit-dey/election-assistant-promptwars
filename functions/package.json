@@ -1,0 +1,14 @@
+{
+  "name": "voteguide-india-functions",
+  "version": "1.0.0",
+  "description": "Google Cloud Functions backend for VoteGuide India election assistant",
+  "main": "index.js",
+  "engines": { "node": "20" },
+  "dependencies": {
+    "@google-cloud/functions-framework": "^3.0.0"
+  },
+  "scripts": {
+    "start": "functions-framework --target=voteGuideChat",
+    "deploy": "gcloud functions deploy voteGuideChat --runtime nodejs20 --trigger-http --allow-unauthenticated"
+  }
+}

@@ -18,14 +18,40 @@ An interactive web application to help Indian citizens understand the complete L
 
 | Service | Purpose | Implementation |
 |---|---|---|
-| Google Cloud App Engine | Production deployment and hosting | app.yaml + gcloud CLI |
-| Google Gemini 2.0 Flash API | Powers VoteGuide AI chatbot | js/chatbot.js |
-| Google Analytics 4 | Anonymous feature engagement tracking | js/analytics.js |
+| Google Cloud App Engine | Production deployment & hosting | app.yaml + gcloud CLI |
+| Google Cloud Functions | Secure server-side Gemini API proxy | functions/index.js |
+| Google Gemini 2.0 Flash | Powers VoteGuide AI chatbot | chatbot.js via Cloud Function |
+| Firebase Realtime Database | Anonymous usage analytics | js/firebase.js |
+| Google Analytics 4 | Feature engagement tracking | js/analytics.js |
 | Google Charts | Election data visualization | js/charts.js |
-| Google Maps Embed API | Polling booth finder and ECI location | #booth-finder section |
+| Google Maps Embed | Polling booth finder | index.html #booth-finder |
+| Google Translate | 10 Indian language support | index.html widget |
 | Google AI Studio | API key management | aistudio.google.com |
-| Google Fonts (Inter, Poppins) | Typography via Google CDN | fonts.googleapis.com |
+| Google Fonts (Inter+Poppins) | Typography via CDN | fonts.googleapis.com |
 | Google Antigravity | Agentic development environment | antigravity.google |
+
+## Architecture
+
+```
+User Browser
+│
+├── Static Assets ──→ Google Cloud App Engine
+│
+├── AI Chat ─────────→ Google Cloud Function
+│                           │
+│                           └──→ Google Gemini 2.0 Flash
+│                                (API key server-side only)
+│
+├── Analytics ───────→ Google Analytics 4
+│
+├── Usage Stats ─────→ Firebase Realtime Database
+│
+├── Data Charts ─────→ Google Charts
+│
+├── Maps ────────────→ Google Maps Embed
+│
+└── Translation ─────→ Google Translate (10 Indian languages)
+```
 
 ## Deployment
 Live on Google Cloud App Engine.

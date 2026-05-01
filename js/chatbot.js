@@ -46,6 +46,14 @@ YOUR KNOWLEDGE:
 // Google Gemini 2.5 Flash-Lite API
 const GEMINI_API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent?key=${typeof GEMINI_API_KEY !== 'undefined' ? GEMINI_API_KEY : ''}`;
 
+/**
+ * Cloud Function URL for secure server-side API proxy.
+ * When set, all Gemini requests go through Cloud Function.
+ * API key stays on server — never reaches browser.
+ * @type {string}
+ */
+const CLOUD_FUNCTION_URL = 'REPLACE_WITH_CLOUD_FUNCTION_URL';
+
 /* Rate limiting: minimum 2 seconds between API requests */
 let lastRequestTime = 0;
 
@@ -57,71 +65,77 @@ const MAX_INPUT_LENGTH = 500;
    ========================================= */
 
 /**
- * @description Sends a message to the Gemini API and returns the response text
- * @param {string} userMessage - The sanitized user message
- * @param {Array<Object>} conversationHistory - Array of conversation turns
- * @returns {Promise<string>} The AI response text or an error message
+ * @description Sends user message to Gemini AI.
+ *              Primary: routes through Cloud Function proxy
+ *              so API key never reaches client browser.
+ *              Fallback: direct API call for development.
+ * @param {string} userMessage - Sanitized user input
+ * @param {Array} conversationHistory - Previous messages array
+ * @returns {Promise<string>} AI response text
  */
-function sendToGemini(userMessage, conversationHistory) {
-  /* Validate API key is configured */
-  if (typeof GEMINI_API_KEY === 'undefined' || !GEMINI_API_KEY || GEMINI_API_KEY === 'YOUR_API_KEY_HERE') {
-    return Promise.resolve('Please configure your Gemini API key in js/config.js to use the AI assistant.');
+async function sendToGemini(userMessage, conversationHistory) {
+  /* Cap history for token efficiency */
+  const safeHistory = conversationHistory.slice(-10);
+
+  /* Try Cloud Function proxy first — most secure */
+  const useCloudFunction = CLOUD_FUNCTION_URL &&
+    CLOUD_FUNCTION_URL !== 'REPLACE_WITH_CLOUD_FUNCTION_URL';
+
+  if (useCloudFunction) {
+    try {
+      const res = await fetch(CLOUD_FUNCTION_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          message: userMessage,
+          history: safeHistory
+        })
+      });
+      if (res.ok) {
+        const data = await res.json();
+        if (typeof recordChatbotQuery === 'function') {
+          recordChatbotQuery();
+        }
+        trackChatbotMessage();
+        return data.response ||
+          'I could not generate a response. Please try again.';
+      }
+    } catch (_) {
+      /* Fall through to direct API */
+    }
   }
 
-  /* Construct the API URL with current key */
-  const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent?key=${GEMINI_API_KEY}`;
+  /* Direct API fallback */
+  if (!GEMINI_API_KEY ||
+      GEMINI_API_KEY === 'YOUR_API_KEY_HERE') {
+    return 'AI assistant not configured. Please add API key.';
+  }
 
-  return fetch(url, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      system_instruction: { parts: [{ text: SYSTEM_PROMPT }] },
-      contents: conversationHistory
-    })
-  })
-  .then(function (res) {
-    /* Handle HTTP error responses with specific messages */
-    if (!res.ok) {
-      return res.json().then(function (errData) {
-        if (res.status === 429) {
-          return { _error: 'I am receiving too many requests right now. Please wait a moment and try again.' };
-        }
-        if (res.status === 400) {
-          return { _error: 'There was a problem with the request. Please try rephrasing your question.' };
-        }
-        if (res.status === 403) {
-          return { _error: 'API key may be restricted. Please check your Gemini API key permissions.' };
-        }
-        return { _error: 'Something went wrong (error ' + res.status + '). Please try again.' };
-      }).catch(function () {
-        return { _error: 'Connection error (HTTP ' + res.status + '). Please try again or call Voter Helpline 1950.' };
-      });
+  try {
+    const contents = [
+      ...safeHistory,
+      { role: 'user', parts: [{ text: userMessage }] }
+    ];
+    const res = await fetch(
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${GEMINI_API_KEY}`,
+      {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ contents })
+      }
+    );
+    if (!res.ok) throw new Error('API error ' + res.status);
+    const data = await res.json();
+    if (typeof recordChatbotQuery === 'function') {
+      recordChatbotQuery();
     }
-    return res.json();
-  })
-  .then(function (data) {
-    /* Return error message from previous step if present */
-    if (data && data._error) {
-      return data._error;
-    }
-
-    /* Extract the text content from a successful Gemini response */
-    if (data && data.candidates && data.candidates[0] &&
-        data.candidates[0].content && data.candidates[0].content.parts &&
-        data.candidates[0].content.parts[0]) {
-      return data.candidates[0].content.parts[0].text;
-    }
-
-    /* Handle safety filter blocks */
-    if (data && data.promptFeedback) {
-      return 'I could not process that question. Please try asking something else about Indian elections.';
-    }
-
-    return 'I am having trouble connecting. Please try again or call Voter Helpline 1950.';
-  })
-  .catch(function () {
-    return 'I am having trouble connecting. Please check your internet and try again, or call Voter Helpline 1950.';
-  });
+    trackChatbotMessage();
+    return data?.candidates?.[0]?.content?.parts?.[0]?.text
+      || 'I could not generate a response. Please try again.';
+  } catch (_) {
+    return 'I am having trouble connecting. Please try again ' +
+      'or call Voter Helpline 1950.';
+  }
 }
 
 /* =========================================

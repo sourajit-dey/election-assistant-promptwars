@@ -1,0 +1,23 @@
+{
+  "name": "VoteGuide India — Indian Election Guide",
+  "short_name": "VoteGuide",
+  "description": "Interactive Indian election guide powered by Google Gemini AI. Understand Lok Sabha elections, voter registration, timelines, and your eligibility.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F8F9FA",
+  "theme_color": "#FF9933",
+  "lang": "en-IN",
+  "orientation": "any",
+  "scope": "/",
+  "icons": [
+    {
+      "src": "assets/chakra.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["education", "government", "utilities"],
+  "related_applications": [],
+  "prefer_related_applications": false
+}

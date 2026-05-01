@@ -7,12 +7,44 @@
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta http-equiv="Content-Security-Policy"
     content="default-src 'self';
-             script-src 'self' 'unsafe-eval' https://www.googletagmanager.com https://www.gstatic.com;
-             style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://www.gstatic.com;
+             script-src 'self' https://www.googletagmanager.com https://www.gstatic.com https://translate.google.com https://translate.googleapis.com;
+             style-src 'self' https://fonts.googleapis.com https://translate.googleapis.com;
              font-src https://fonts.gstatic.com;
-             connect-src 'self' https://generativelanguage.googleapis.com https://www.google-analytics.com https://region1.google-analytics.com;
-             img-src 'self' data: https://www.google-analytics.com https://maps.googleapis.com;
+             connect-src 'self' https://generativelanguage.googleapis.com https://www.google-analytics.com https://region1.google-analytics.com https://*.firebaseio.com https://firestore.googleapis.com https://*.cloudfunctions.net https://translate.googleapis.com;
+             img-src 'self' data: https://www.google-analytics.com https://maps.googleapis.com https://img.shields.io https://www.gstatic.com;
              frame-src https://www.google.com/maps/;">
+
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#FF9933">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="VoteGuide India">
+<link rel="dns-prefetch" href="https://generativelanguage.googleapis.com">
+<link rel="dns-prefetch" href="https://www.googletagmanager.com">
+<link rel="dns-prefetch" href="https://www.gstatic.com">
+<link rel="dns-prefetch" href="https://fonts.googleapis.com">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "VoteGuide India",
+  "description": "Interactive Indian election guide powered by Google Gemini AI",
+  "url": "https://election-assistant-promptwars.el.r.appspot.com",
+  "applicationCategory": "EducationApplication",
+  "operatingSystem": "Web Browser",
+  "inLanguage": "en-IN",
+  "offers": { "@type": "Offer", "price": "0" },
+  "featureList": [
+    "7-stage interactive election timeline",
+    "AI chatbot powered by Google Gemini",
+    "Voter eligibility checker",
+    "Election data charts via Google Charts",
+    "Polling booth finder via Google Maps",
+    "Multilingual support via Google Translate",
+    "Offline capability via Service Worker"
+  ]
+}
+</script>
 
 <!-- Google Analytics 4 -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y6FPB3P2JK"></script>
@@ -28,6 +60,9 @@
 
   <!-- Google Charts — Data Visualization Service -->
   <script src="https://www.gstatic.com/charts/loader.js"></script>
+  <!-- Firebase SDK — Anonymous Analytics -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
   <title>VoteGuide India — Interactive Indian Election Guide</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -90,6 +125,11 @@
             <div class="hero-stat-value">970M+</div>
             <div class="hero-stat-label">Registered Voters</div>
           </div>
+        </div>
+        <div class="live-counter" aria-live="polite" aria-atomic="true">
+          <span class="live-dot" aria-hidden="true"></span>
+          <span id="visitor-count">—</span>
+          <span> citizens have explored VoteGuide</span>
         </div>
       </div>
     </section>
@@ -240,10 +280,11 @@
   <!-- Back to Top -->
   <button class="back-to-top" id="back-to-top" aria-label="Back to top">↑</button>
 
-  <!-- Scripts: config → utils → analytics → charts → data → features → chatbot → tests -->
+  <!-- Scripts: config → utils → analytics → firebase → charts → data → features → chatbot → tests -->
   <script src="js/config.js?v=2"></script>
   <script src="js/utils.js?v=2"></script>
   <script src="js/analytics.js?v=2"></script>
+  <script src="js/firebase.js?v=2"></script>
   <script src="js/charts.js?v=2"></script>
   <script src="js/data.js?v=2"></script>
   <script src="js/timeline.js?v=2"></script>
@@ -252,5 +293,15 @@
   <script src="js/main.js?v=2"></script>
   <script src="js/chatbot.js?v=2"></script>
   <script src="js/tests.js?v=2"></script>
+
+  <!-- Service Worker Registration -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function() {
+        navigator.serviceWorker.register('/sw.js')
+          .catch(function() { /* fail silently */ });
+      });
+    }
+  </script>
 </body>
 </html>

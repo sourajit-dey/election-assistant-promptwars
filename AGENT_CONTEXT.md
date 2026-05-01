@@ -2,143 +2,146 @@
 # READ THIS ENTIRE FILE BEFORE TOUCHING ANY CODE
 
 ## WHAT THIS PROJECT IS
-VoteGuide India is an interactive web app for Google PromptWars 
-Virtual 2026 Challenge 2. It helps Indian citizens understand the 
-Lok Sabha election process. This is a competition submission 
+VoteGuide India is an interactive web app for Google PromptWars
+Virtual 2026 Challenge 2. It helps Indian citizens understand the
+Lok Sabha election process. This is a competition submission
 evaluated by an AI checker on 6 parameters.
-We have 2 submission attempts remaining.
+This is the FINAL submission attempt. One chance. Make it count.
 Deadline: May 3, 2026, 11:59 PM IST.
 
-## CURRENT AI SCORES AND TARGETS
-- Code Quality:              83.75% → target 90%+
-- Security:                  96.25% → PROTECT, do not drop below 94%
-- Efficiency:                80%    → target 86%+
-- Testing:                   52.5%  → target 90%+ CRITICAL FIX
-- Accessibility:             97.5%  → PROTECT, do not drop below 95%
-- Google Services:           25%    → target 90%+ CRITICAL FIX
-- Problem Statement:         97.5%  → PROTECT
-- Overall:                   82.19% → target 90%+ for top 100 rank
+## CURRENT SCORES — ATTEMPT 2 RESULT
+- Code Quality:             86.25% → target 93%+
+- Security:                 98.75% → PROTECT, never drop
+- Efficiency:               80%    → target 92%+ CRITICAL
+- Testing:                  78.75% → target 90%+ CRITICAL
+- Accessibility:            98.75% → PROTECT, never drop
+- Google Services:          75%    → target 95%+ CRITICAL
+- Problem Statement:        98%    → PROTECT
+- Overall:                  90.28% → target 95%+
+- Current Rank:             380 → target top 100
+
+## WHAT THE AI CHECKER SPECIFICALLY SAID WAS MISSING
+1. "Usage reflects broader adoption of Google services like
+   Cloud Functions, BigQuery, or AI/ML APIs across workflows"
+   → We need Cloud Functions and Firebase backends
+2. "Testing strategy demonstrates good breadth, including
+   workflows and automated validation"
+   → We need async tests, backend tests, workflow tests
+3. Performance and efficiency indicators need to be stronger
+   → We need Service Worker + PWA + caching strategy
 
 ## CURRENT FILE STRUCTURE
 PW-Election-Assistant/
 ├── index.html
 ├── README.md
-├── .gitignore          (includes js/config.js — NEVER change this)
+├── .gitignore (has js/config.js — NEVER CHANGE THIS)
 ├── .gcloudignore
+├── app.yaml
 ├── Dockerfile
 ├── nginx.conf
 ├── eslint.config.js
 ├── package.json
 ├── package-lock.json
+├── AGENT_CONTEXT.md
 ├── css/
 │   ├── style.css
 │   ├── components.css
 │   └── animations.css
 ├── js/
-│   ├── config.js       (GITIGNORED — real API key here)
-│   ├── utils.js        (has debounce, sanitizeInput, scrollToSection,
+│   ├── config.js       (GITIGNORED — real Gemini API key)
+│   ├── utils.js        (debounce, sanitizeInput, scrollToSection,
 │                        formatIndianDate)
-│   ├── data.js         (has Object.freeze(ELECTION_DATA))
+│   ├── analytics.js    (Google Analytics 4 tracking)
+│   ├── charts.js       (Google Charts visualization)
+│   ├── data.js         (Object.freeze(ELECTION_DATA))
 │   ├── timeline.js
 │   ├── eligibility.js
 │   ├── glossary.js
 │   ├── main.js
-│   ├── chatbot.js      (Gemini 2.0 Flash, rate limiting, XSS protect)
-│   └── tests.js
+│   ├── chatbot.js      (Gemini 2.0 Flash, rate limiting, XSS)
+│   └── tests.js        (10 test groups, ?test=true URL)
 └── assets/
     └── chakra.svg
 
-## SCRIPT LOADING ORDER IN INDEX.HTML — DO NOT CHANGE THIS ORDER
+## GOOGLE SERVICES ALREADY IN PROJECT
+1. Google Cloud App Engine — hosting (app.yaml)
+2. Google Gemini 2.0 Flash API — AI chatbot (chatbot.js)
+3. Google Analytics 4 — usage tracking (analytics.js)
+4. Google Charts — data visualization (charts.js)
+5. Google Maps Embed — polling booth finder (index.html)
+6. Google Fonts — Inter + Poppins typography
+7. Google AI Studio — API key management
+8. Google Antigravity — built the project
+9. Google Translate — multilingual support (index.html)
+
+## WHAT NEEDS TO BE ADDED IN THIS SESSION
+1. Service Worker (sw.js) — offline caching, PWA
+2. Web App Manifest (manifest.json) — installable PWA
+3. Cloud Functions backend (functions/) — API proxy, security
+4. Firebase Realtime Database (firebase.js) — usage analytics
+5. Expanded test suite — 15+ test groups
+6. Performance improvements — lazy loading, preload, caching
+7. Better JSDoc and code documentation
+
+## SCRIPT LOADING ORDER IN INDEX.HTML — DO NOT CHANGE ORDER
 1. js/config.js
 2. js/utils.js
-3. js/data.js
-4. js/timeline.js
-5. js/eligibility.js
-6. js/glossary.js
-7. js/main.js
-8. js/chatbot.js
-9. js/tests.js
+3. js/analytics.js
+4. js/firebase.js  (NEW — add here)
+5. js/charts.js
+6. js/data.js
+7. js/timeline.js
+8. js/eligibility.js
+9. js/glossary.js
+10. js/main.js
+11. js/chatbot.js
+12. js/tests.js
 
-## ABSOLUTE RULES — NEVER VIOLATE THESE
-1. NEVER use inline onclick="..." handlers in any HTML string 
-   generated by JavaScript. Always use addEventListener instead.
-   Violation breaks Content Security Policy and drops Security score.
+## ABSOLUTE RULES — VIOLATING ANY OF THESE WILL FAIL THE SCORE
+1. NEVER use inline onclick="..." in JS-generated HTML strings
+   Always use addEventListener. This breaks CSP and Security score.
 
-2. NEVER put white (#fff or #ffffff) text on saffron (#FF9933) 
-   background. Always use #1A1A2E for text on saffron.
-   Violation drops Accessibility score (WCAG AA contrast fail).
+2. NEVER put white text (#fff) on saffron (#FF9933) background
+   Always use color: #1A1A2E on saffron. WCAG AA contrast rule.
 
-3. NEVER commit or expose js/config.js to GitHub.
-   It must always be in .gitignore.
-   Violation drops Security score to near zero.
+3. NEVER expose js/config.js to GitHub
+   It must always be in .gitignore. Check before every commit.
 
-4. NEVER remove or weaken the Content Security Policy meta tag 
-   in index.html. You may only ADD domains to it, never remove 
-   existing ones or add unsafe-inline or unsafe-eval.
-   Violation drops Security score.
+4. NEVER weaken the CSP meta tag
+   Only ADD new domains. Never add unsafe-inline or unsafe-eval.
 
-5. NEVER remove Object.freeze(ELECTION_DATA) from data.js.
+5. NEVER remove Object.freeze(ELECTION_DATA) from data.js
 
-6. NEVER remove or change any aria-* attributes, role attributes,
-   tabindex attributes, or the skip-link element.
-   Violation drops Accessibility score.
+6. NEVER remove aria-* attributes, role, tabindex, skip-link
 
-7. NEVER use var. Always use const or let.
+7. NEVER use var — always const or let
 
-8. NEVER leave console.log() in production code.
-   console.assert() and console.group() in tests.js are allowed.
+8. NEVER leave console.log() outside tests.js
 
-9. NEVER change the script loading order in index.html.
+9. NEVER change the script loading order
 
-10. NEVER add node_modules to the git repository.
+10. NEVER commit node_modules — it must be in .gitignore
 
-## WHAT IS ALREADY WORKING — DO NOT REBUILD THESE
-- 7-stage interactive election timeline (expand/collapse)
-- 4-step voter eligibility checker with full validation
-- Tabbed voter registration guide (3 tabs)
-- Searchable election glossary (14 terms, debounced search)
-- FAQ accordion (8 questions)
-- AI chatbot using Google Gemini 2.0 Flash API
-- Automated test suite triggered by ?test=true in URL
+## DESIGN SYSTEM — NEVER CHANGE
+--primary: #FF9933 (saffron)
+--secondary: #138808 (green)
+--navy: #000080
+--bg: #F8F9FA
+--surface: #FFFFFF
+--text-primary: #1A1A2E
+Text on saffron: ALWAYS #1A1A2E, NEVER white
+Fonts: Poppins (headings) + Inter (body) — Google Fonts
+
+## WHAT IS ALREADY WORKING — DO NOT REBUILD
+- 7-stage interactive election timeline
+- 4-step voter eligibility checker
+- Tabbed voter registration guide
+- Searchable glossary with 14 terms
+- FAQ accordion with 8 questions
+- AI chatbot using Gemini 2.0 Flash
+- 10-group automated test suite
+- Google Analytics event tracking
+- Google Charts (seats + turnout)
+- Google Maps embed (booth finder)
+- Google Translate widget
 - Deployed on Google Cloud App Engine
-- Docker and nginx configuration
-- ESLint configuration
-- Full ARIA accessibility implementation
-- Keyboard navigation on all interactive elements
-- Single IntersectionObserver for scroll animations
-
-## DESIGN SYSTEM — NEVER CHANGE THESE VALUES
-Colors:
-  --primary: #FF9933 (saffron)
-  --secondary: #138808 (green)
-  --navy: #000080
-  --bg: #F8F9FA
-  --surface: #FFFFFF
-  --text-primary: #1A1A2E
-  Text on ANY saffron background: ALWAYS #1A1A2E, NEVER white
-
-Fonts: Poppins (headings 600,700) + Inter (body 400,500)
-Both loaded from Google Fonts — do not change these
-
-Border radius: 12px cards, 8px inputs, 20px pills
-
-## WHY GOOGLE SERVICES IS ONLY 25%
-The AI checker only detected Gemini API and Google Fonts.
-The app is deployed on Google Cloud but it is not documented 
-in the code in a way the checker can detect.
-We need to add:
-1. Google Analytics 4 (event tracking)
-2. Google Charts (data visualization)
-3. Google Maps embed (polling booth finder)
-4. Proper app.yaml and Cloud documentation
-
-## WHY TESTING IS ONLY 52.5%
-Current tests only check if data exists and DOM elements exist.
-The checker flagged: failure paths, complex interactions, and 
-async behavior are not tested.
-We need to add:
-1. Async function behavior tests
-2. DOM interaction simulation tests
-3. Failure and error path tests
-4. Data accuracy and boundary tests
-5. Google Services integration tests
