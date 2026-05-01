@@ -15,13 +15,13 @@
  * @type {Object}
  */
 const FIREBASE_CONFIG = {
-  apiKey: "REPLACE_WITH_FIREBASE_API_KEY",
-  authDomain: "REPLACE_WITH_PROJECT_ID.firebaseapp.com",
-  databaseURL: "https://REPLACE_WITH_PROJECT_ID-default-rtdb.firebaseio.com",
-  projectId: "REPLACE_WITH_PROJECT_ID",
-  storageBucket: "REPLACE_WITH_PROJECT_ID.appspot.com",
-  messagingSenderId: "REPLACE_WITH_SENDER_ID",
-  appId: "REPLACE_WITH_APP_ID"
+  apiKey: "AIzaSyCZ-jVBgpwD4c0fXSdyCWUYvVAjVZCMMM4",
+  authDomain: "voteguide-india.firebaseapp.com",
+  databaseURL: "https://voteguide-india-default-rtdb.firebaseio.com",
+  projectId: "voteguide-india",
+  storageBucket: "voteguide-india.firebasestorage.app",
+  messagingSenderId: "1039152364260",
+  appId: "1:1039152364260:web:778881750e9de5a3cbcaf1"
 };
 
 /** @type {Object|null} Firebase database reference */
