@@ -18,21 +18,18 @@ An interactive web application to help Indian citizens understand the complete L
 
 | Service | Purpose | Implementation |
 |---|---|---|
-| Google Cloud Run | Production deployment and hosting | Dockerfile + Nginx |
-| Google Gemini 2.0 Flash API | Powers the VoteGuide AI chatbot | js/chatbot.js |
+| Google Cloud App Engine | Production deployment and hosting | app.yaml + gcloud CLI |
+| Google Gemini 2.0 Flash API | Powers VoteGuide AI chatbot | js/chatbot.js |
 | Google Analytics 4 | Anonymous feature engagement tracking | js/analytics.js |
-| Google Charts | Election data visualization (seats + turnout) | js/charts.js |
-| Google Maps Embed | Polling booth finder and ECI location | #booth-finder iframe |
-| Google AI Studio | Gemini API key management | aistudio.google.com |
-| Google Fonts (Inter, Poppins) | Premium typography via Google CDN | fonts.googleapis.com |
+| Google Charts | Election data visualization | js/charts.js |
+| Google Maps Embed API | Polling booth finder and ECI location | #booth-finder section |
+| Google AI Studio | API key management | aistudio.google.com |
+| Google Fonts (Inter, Poppins) | Typography via Google CDN | fonts.googleapis.com |
 | Google Antigravity | Agentic development environment | antigravity.google |
 
 ## Deployment
-Deployed on Google Cloud Run.
-Live URL: [https://election-assistant-113871253572.us-central1.run.app/](https://election-assistant-113871253572.us-central1.run.app/)
-
-Deploy command:
-gcloud run deploy election-assistant --source . --region us-central1 --allow-unauthenticated
+Live on Google Cloud App Engine.
+Deploy: gcloud app deploy --project=YOUR_PROJECT_ID
 
 ## Built With
 

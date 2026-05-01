@@ -212,7 +212,7 @@
 .map-wrapper{border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow)}
 
 /* =====================
-   CHARTS RESPONSIVE
+   CHARTS AND MAP RESPONSIVE
 ===================== */
 @media(max-width:768px){
   .charts-grid{grid-template-columns:1fr}

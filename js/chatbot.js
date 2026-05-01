@@ -397,6 +397,7 @@ function buildChatbot() {
       }
 
       addBotBubble(reply);
+      trackChatbotMessage();
       setInputEnabled(true);
     }).catch(function () {
       hideTyping();

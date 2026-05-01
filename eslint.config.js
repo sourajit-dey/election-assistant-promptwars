@@ -26,7 +26,18 @@ export default [
         testDataIntegrity: "readonly",
         testEligibilityLogic: "readonly",
         testSanitization: "readonly",
-        testDOMElements: "readonly"
+        testDOMElements: "readonly",
+        trackTimelineStageView: "readonly",
+        trackEligibilityCompletion: "readonly",
+        trackChatbotMessage: "readonly",
+        trackGlossarySearch: "readonly",
+        trackFAQExpand: "readonly",
+        trackRegistrationTab: "readonly",
+        initGoogleCharts: "readonly",
+        drawAllCharts: "readonly",
+        drawSeatDistributionChart: "readonly",
+        drawVoterTurnoutChart: "readonly",
+        safeGtag: "readonly"
       }
     }
   },
