@@ -43,8 +43,8 @@ YOUR KNOWLEDGE:
    Gemini API Configuration
    ========================================= */
 
-// Google Gemini 2.5 Flash API
-const GEMINI_API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${typeof GEMINI_API_KEY !== 'undefined' ? GEMINI_API_KEY : ''}`;
+// Google Gemini 2.5 Flash-Lite API
+const GEMINI_API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent?key=${typeof GEMINI_API_KEY !== 'undefined' ? GEMINI_API_KEY : ''}`;
 
 /* Rate limiting: minimum 2 seconds between API requests */
 let lastRequestTime = 0;
@@ -69,7 +69,7 @@ function sendToGemini(userMessage, conversationHistory) {
   }
 
   /* Construct the API URL with current key */
-  const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_API_KEY}`;
+  const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent?key=${GEMINI_API_KEY}`;
 
   return fetch(url, {
     method: 'POST',
@@ -153,7 +153,7 @@ function buildChatbot() {
     '<div class="chatbot-header">' +
       '<div class="chatbot-header-info">' +
         '<div class="chatbot-header-title">VoteGuide AI</div>' +
-        '<div class="chatbot-header-sub">Powered by Google Gemini 2.5 Flash</div>' +
+        '<div class="chatbot-header-sub">Powered by Google Gemini 2.5 Flash-Lite</div>' +
       '</div>' +
       '<button class="chatbot-close" aria-label="Close chat window">\u00D7</button>' +
     '</div>' +
