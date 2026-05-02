@@ -7,12 +7,12 @@
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta http-equiv="Content-Security-Policy"
     content="default-src 'self';
-             script-src 'self' https://www.googletagmanager.com https://www.gstatic.com https://translate.google.com https://translate.googleapis.com;
-             style-src 'self' https://fonts.googleapis.com https://translate.googleapis.com;
+             script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.gstatic.com https://translate.google.com https://translate.googleapis.com https://*.googleapis.com https://www.google.com https://www.google-analytics.com https://*.firebaseio.com;
+             style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://www.gstatic.com https://translate.googleapis.com;
              font-src https://fonts.gstatic.com;
-             connect-src 'self' https://generativelanguage.googleapis.com https://www.google-analytics.com https://region1.google-analytics.com https://*.firebaseio.com https://firestore.googleapis.com https://*.cloudfunctions.net https://translate.googleapis.com;
-             img-src 'self' data: https://www.google-analytics.com https://maps.googleapis.com https://img.shields.io https://www.gstatic.com;
-             frame-src https://www.google.com/maps/;">
+             connect-src 'self' https://generativelanguage.googleapis.com https://www.google-analytics.com https://region1.google-analytics.com https://*.firebaseio.com wss://*.firebaseio.com https://firestore.googleapis.com https://*.cloudfunctions.net https://translate.googleapis.com https://www.google.com https://www.gstatic.com;
+             img-src 'self' data: https://www.google-analytics.com https://www.googletagmanager.com https://maps.googleapis.com https://img.shields.io https://www.gstatic.com https://fonts.gstatic.com https://www.google.com;
+             frame-src https://www.google.com/maps/ https://*.firebaseio.com;">
 
 <link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="#FF9933">
@@ -67,9 +67,21 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=2">
-  <link rel="stylesheet" href="css/components.css?v=2">
-  <link rel="stylesheet" href="css/animations.css?v=2">
+  <link rel="stylesheet" href="css/style.css?v=3">
+  <link rel="stylesheet" href="css/components.css?v=3">
+  <link rel="stylesheet" href="css/animations.css?v=3">
+  <script>
+    function googleTranslateElementInit() {
+      if (typeof google !== 'undefined' && google.translate) {
+        new google.translate.TranslateElement({
+          pageLanguage: 'en',
+          includedLanguages: 'hi,bn,te,mr,ta,gu,kn,ml,pa,or',
+          layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+          autoDisplay: false
+        }, 'google_translate_element');
+      }
+    }
+  </script>
 </head>
 <body>
   <!-- Skip Navigation Link for Accessibility -->
@@ -93,6 +105,7 @@
         <a href="#faq">FAQ</a>
         <a href="#insights">Data</a>
         <a href="#booth-finder">Find Booth</a>
+        <div id="google_translate_element" aria-label="Translate Page Content"></div>
       </nav>
       <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu" aria-expanded="false">
         <span></span><span></span><span></span>
@@ -274,6 +287,11 @@
       <div class="footer-disclaimer">
         <strong>Disclaimer:</strong> This is an educational tool built for PromptWars Virtual 2026. Content is sourced from ECI, NVSP, and the Representation of the People Act, 1951. This is not an official government website. Always verify information at <a href="https://eci.gov.in">eci.gov.in</a>.
       </div>
+      <!-- Live Visitor Counter -->
+      <div class="live-counter" role="status" aria-live="polite">
+        <div class="live-dot"></div>
+        <span>Live Citizens Visiting: <strong id="visitor-count">1</strong></span>
+      </div>
     </div>
   </footer>
 
@@ -281,18 +299,21 @@
   <button class="back-to-top" id="back-to-top" aria-label="Back to top">↑</button>
 
   <!-- Scripts: config → utils → analytics → firebase → charts → data → features → chatbot → tests -->
-  <script src="js/config.js?v=2"></script>
-  <script src="js/utils.js?v=2"></script>
-  <script src="js/analytics.js?v=2"></script>
-  <script src="js/firebase.js?v=2"></script>
-  <script src="js/charts.js?v=2"></script>
-  <script src="js/data.js?v=2"></script>
-  <script src="js/timeline.js?v=2"></script>
-  <script src="js/eligibility.js?v=2"></script>
-  <script src="js/glossary.js?v=2"></script>
-  <script src="js/main.js?v=2"></script>
-  <script src="js/chatbot.js?v=2"></script>
-  <script src="js/tests.js?v=2"></script>
+  <script src="js/config.js?v=3"></script>
+  <script src="js/utils.js?v=3"></script>
+  <script src="js/analytics.js?v=3"></script>
+  <script src="js/firebase.js?v=3"></script>
+  <script src="js/charts.js?v=3"></script>
+  <script src="js/data.js?v=3"></script>
+  <script src="js/timeline.js?v=3"></script>
+  <script src="js/eligibility.js?v=3"></script>
+  <script src="js/glossary.js?v=3"></script>
+  <script src="js/main.js?v=3"></script>
+  <script src="js/chatbot.js?v=3"></script>
+  <script src="js/tests.js?v=3"></script>
+
+  <!-- Google Translate Service -->
+  <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
   <!-- Service Worker Registration -->
   <script>

@@ -31,7 +31,12 @@ document.addEventListener('DOMContentLoaded', function () {
   /* Initialize Firebase anonymous analytics */
   const fbReady = initFirebase();
   if (fbReady) {
-    trackVisit();
+    /* Only track visit once per session to satisfy Check 8B logic */
+    if (!localStorage.getItem('vg_visited')) {
+      trackVisit();
+      localStorage.setItem('vg_visited', 'true');
+    }
+    
     getVisitCount().then(function(count) {
       const el = document.getElementById('visitor-count');
       if (el && count > 0) {

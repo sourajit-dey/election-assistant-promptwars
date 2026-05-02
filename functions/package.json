@@ -7,8 +7,7 @@
     "node": "20"
   },
   "dependencies": {
-    "@google-cloud/functions-framework": "^3.0.0",
-    "node-fetch": "^2.7.0"
+    "@google-cloud/functions-framework": "^3.0.0"
   },
   "scripts": {
     "start": "functions-framework --target=voteGuideChat",

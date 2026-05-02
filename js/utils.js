@@ -46,11 +46,16 @@ function formatIndianDate(date) {
  * @returns {string} Sanitized string safe for display and processing
  */
 function sanitizeInput(input) {
+  if (typeof input !== 'string') return '';
   return input
     .replace(/&/g, '&amp;')
     .replace(/</g, '&lt;')
     .replace(/>/g, '&gt;')
     .replace(/"/g, '&quot;')
     .replace(/'/g, '&#039;')
+    .replace(/onerror/gi, 'sanitized') 
+    .replace(/onload/gi, 'sanitized')
+    .replace(/on\w+/gi, 'no-attr')
+    .replace(/javascript:/gi, 'no-js:')
     .trim();
 }

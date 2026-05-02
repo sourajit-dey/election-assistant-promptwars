@@ -2,7 +2,7 @@
 # Google Cloud App Engine configuration
 # VoteGuide India — Google PromptWars Virtual 2026
 
-runtime: nodejs20
+runtime: nodejs22
 
 handlers:
   - url: /css

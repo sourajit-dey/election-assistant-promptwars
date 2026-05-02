@@ -8,7 +8,7 @@
  */
 
 const functions = require('@google-cloud/functions-framework');
-const fetch = require('node-fetch');
+// const fetch = require('node-fetch'); // Native fetch is available in Node 18+
 
 const ELECTION_SYSTEM_PROMPT = `You are VoteGuide, a friendly and knowledgeable Indian election assistant. Help Indian citizens understand the complete Lok Sabha election process.
 
@@ -101,7 +101,7 @@ functions.http('voteGuideChat', async (req, res) => {
 
   try {
     const geminiResponse = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`,
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent?key=${apiKey}`,
       {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
