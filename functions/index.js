@@ -103,12 +103,12 @@ functions.http('voteGuideChat', async (req, res) => {
 
   try {
     const geminiResponse = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent?key=${apiKey}`,
+      `https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash-8b:generateContent?key=${apiKey}`,
       {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          system_instruction: { parts: [{ text: ELECTION_SYSTEM_PROMPT }] },
+          systemInstruction: { parts: [{ text: ELECTION_SYSTEM_PROMPT }] },
           contents,
           generationConfig: { maxOutputTokens: 300, temperature: 0.4 }
         })
