@@ -41,7 +41,7 @@ function sanitizeServerSide(input) {
 functions.http('voteGuideChat', async (req, res) => {
   res.set('X-Content-Type-Options', 'nosniff');
   res.set('X-Frame-Options', 'DENY');
-  res.set('Strict-Transport-Security', 'max-age=31536000; includeSubDomains');
+  // Handle CORS
   res.set('Access-Control-Allow-Origin', '*');
   res.set('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.set('Access-Control-Allow-Headers', 'Content-Type');
@@ -50,6 +50,8 @@ functions.http('voteGuideChat', async (req, res) => {
     res.status(204).send('');
     return;
   }
+
+  console.log('Received request:', req.method, JSON.stringify(req.body));
 
   if (req.method !== 'POST') {
     res.status(405).json({ error: 'Method not allowed' });
